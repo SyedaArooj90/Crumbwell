@@ -24,7 +24,7 @@ function About() {
         <p className="hero-kicker">Our story</p>
         <h1>A bakery that keeps bread's original pace.</h1>
         <p className="hero-sub">
-          Hearth &amp; Crumb started in a home kitchen with one starter and a waitlist of
+          Crumbwell started in a home kitchen with one starter and a waitlist of
           neighbors. We've grown since, but the bread still takes as long as it needs to.
         </p>
       </header>

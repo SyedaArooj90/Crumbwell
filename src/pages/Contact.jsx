@@ -66,7 +66,7 @@ function Contact() {
           </div>
           <div>
             <p className="footer-heading">Reach us</p>
-            <p>hello@hearthandcrumb.pk</p>
+            <p>hello@crumbwell.pk</p>
             <p>+92 300 000 0000</p>
           </div>
         </div>
