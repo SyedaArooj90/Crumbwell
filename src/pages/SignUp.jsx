@@ -16,6 +16,10 @@ function SignUp() {
       ) : (
         <form className="order-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true) }}>
           <label>
+            Name
+            <input name="name" value={form.name} onChange={handleChange} required />
+          </label>
+          <label>
             Email
             <input type="email" name="email" value={form.email} onChange={handleChange} required />
           </label>
@@ -23,7 +27,11 @@ function SignUp() {
             Password
             <input type="password" name="password" value={form.password} onChange={handleChange} required />
           </label>
-          <button type="submit" className="btn-primary">Log in</button>
+          <label>
+            ConfirmPassword
+            <input type="password" name="password" value={form.password} onChange={handleChange} required />
+          </label>
+          <button type="submit" className="btn-primary">Create Account</button>
         </form>
       )}
     </section>
