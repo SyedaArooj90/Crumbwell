@@ -26,7 +26,7 @@ function Home() {
           </h1>
           <p className="hero-sub">
             We mill less, ferment longer, and bake in small batches so every loaf still tastes
-            like someone made it by hand — because someone did.
+            like someone made it by hand, because someone did.
           </p>
           <div className="hero-actions">
             <Link to="/menu" className="btn-primary">
