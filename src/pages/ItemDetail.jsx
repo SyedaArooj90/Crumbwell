@@ -1,13 +1,23 @@
 import { useParams, Link } from 'react-router-dom'
-import menu from '../data/menu.js'
 import ItemVisual from '../components/ItemVisual.jsx'
 import { useCart } from '../context/CartContext.jsx'
+import { useMenu } from '../hooks/useMenu.js'
+import { buildItems } from '../utils/menuHelpers.js'
 
 function ItemDetail() {
-  const { category, slug } = useParams()
-  const categoryData = menu[category]
-  const item = categoryData?.items.find((i) => i.slug === slug)
+  const { slug } = useParams()
+  const { menu, loading } = useMenu()
   const { addToCart } = useCart()
+
+  if (loading) {
+    return (
+      <section className="page-header">
+        <p className="hero-sub">Loading...</p>
+      </section>
+    )
+  }
+
+  const item = buildItems(menu).find((i) => i.slug === slug)
 
   if (!item) {
     return (
@@ -21,7 +31,8 @@ function ItemDetail() {
   return (
     <section className="item-detail-page page-header">
       <p className="hero-kicker">
-        <Link to="/menu">Menu</Link> / {categoryData.label}
+        <Link to="/menu">Menu</Link> /{' '}
+        <Link to={`/menu?tab=${item.categoryKey}`}>{item.categoryName}</Link>
       </p>
       <div className="item-detail-grid">
         <ItemVisual item={item} className="item-detail-thumb" />

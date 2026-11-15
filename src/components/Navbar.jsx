@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { useCart } from '../context/CartContext.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 function Navbar() {
   const { totalCount } = useCart()
+  const { user, logout } = useAuth()
 
   return (
     <header className="navbar">
@@ -49,16 +51,32 @@ function Navbar() {
       </nav>
 
       <div className="nav-auth">
-        <NavLink to="/login" className="nav-login">
-          Log in
+  {user ? (
+    <>
+      {user.role !== 'customer' && (
+        <NavLink to="/admin" className="nav-login">
+          Admin
         </NavLink>
-        <NavLink to="/signup" className="btn-signup">
-          Sign up
-        </NavLink>
-        <NavLink to="/cart" className="nav-cart">
-          Cart{totalCount > 0 ? ` (${totalCount})` : ''}
-        </NavLink>
-      </div>
+      )}
+      <span className="nav-user">Hi, {user.name}</span>
+      <button className="nav-logout" onClick={logout}>
+        Log out
+      </button>
+    </>
+  ) : (
+    <>
+      <NavLink to="/login" className="nav-login">
+        Log in
+      </NavLink>
+      <NavLink to="/signup" className="btn-signup">
+        Sign up
+      </NavLink>
+    </>
+  )}
+  <NavLink to="/cart" className="nav-cart">
+    Cart{totalCount > 0 ? ` (${totalCount})` : ''}
+  </NavLink>
+</div>
     </header>
   )
 }
